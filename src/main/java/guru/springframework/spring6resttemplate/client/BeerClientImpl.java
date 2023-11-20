@@ -19,8 +19,7 @@ public class BeerClientImpl implements BeerClient {
 
     private final RestTemplateBuilder restTemplateBuilder;
 
-    private final static String BASE_URL = "http://localhost:8080";
-    private final static String GET_BEER_PATH = "/api/v1/beer";
+    private static final String GET_BEER_PATH = "/api/v1/beer";
 
     @Override
     public Page<BeerDTO> listBeers() {
@@ -35,9 +34,9 @@ public class BeerClientImpl implements BeerClient {
         System.out.println(stringResponse.getBody());
         */
 
-        ResponseEntity<BeerDTOPageImpl> pageResponse =
-                restTemplate.getForEntity(BASE_URL + GET_BEER_PATH , BeerDTOPageImpl.class);
+        ResponseEntity<BeerDTOPageImpl> response =
+                restTemplate.getForEntity(GET_BEER_PATH , BeerDTOPageImpl.class);
 
-        return null;
+        return response.getBody();
     }
 }
